@@ -40,7 +40,7 @@ import lime.app.Application;
 class WindowConfig
 {
 	static var _window(get, never):lime.ui.Window;
-	static function get_window():lime.ui.Window
+	static function get__window():lime.ui.Window
 		return Application.current.window;
 
 	// ─── TITLE ───────────────────────────────────────────────────────────

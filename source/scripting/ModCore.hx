@@ -13,14 +13,6 @@ import polymod.Polymod;
  */
 class ModCore
 {
-	/**
-	 * The current API version.
-	 * Must be formatted in Semantic Versioning v2; <MAJOR>.<MINOR>.<PATCH>.
-	 * 
-	 * Remember to increment the major version if you make breaking changes to mods!
-	 */
-	static final API_VERSION = "0.1.0";
-
 	static final MOD_DIRECTORY = "mods";
 
 	public static function initialize()
@@ -44,8 +36,6 @@ class ModCore
 			dirs: ids,
 			// Framework being used to load assets. We're using a CUSTOM one which extends the OpenFL one.
 			framework: CUSTOM,
-			// The current version of our API.
-			apiVersion: API_VERSION,
 			// Call this function any time an error occurs.
 			errorCallback: onPolymodError,
 			// Enforce semantic version patterns for each mod.
@@ -95,7 +85,7 @@ class ModCore
 	static function getModIds():Array<String>
 	{
 		Debug.logInfo('Scanning the mods folder...');
-		var modMetadata = Polymod.scan(MOD_DIRECTORY);
+		var modMetadata:Array<Dynamic> = cast Polymod.scan(MOD_DIRECTORY);
 		Debug.logInfo('Found ${modMetadata.length} mods when scanning.');
 		var modIds = [for (i in modMetadata) i.id];
 		return modIds;
