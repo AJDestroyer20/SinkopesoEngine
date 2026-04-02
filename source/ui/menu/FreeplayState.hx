@@ -2,7 +2,7 @@ package ui.menu;
 
 import openfl.utils.Future;
 import openfl.media.Sound;
-import flixel.system.FlxSound;
+import flixel.sound.FlxSound;
 #if FEATURE_STEPMANIA
 import smTools.SMFile;
 #end

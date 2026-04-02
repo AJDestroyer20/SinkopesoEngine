@@ -5,7 +5,7 @@ import flixel.FlxCamera;
 import flixel.math.FlxRect;
 import data.song.Song.SongData;
 import gameplay.Section.SwagSection;
-import flixel.system.FlxSound;
+import flixel.sound.FlxSound;
 import flixel.input.gamepad.FlxGamepad;
 import flixel.util.FlxAxes;
 import flixel.FlxSubState;

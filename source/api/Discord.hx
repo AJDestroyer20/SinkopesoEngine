@@ -22,23 +22,23 @@ class DiscordClient
 		handlers.errored      = cpp.Function.fromStaticFunction(onError);
 		handlers.disconnected = cpp.Function.fromStaticFunction(onDisconnected);
 
-		Discord.initialize(clientID, cpp.RawPointer.addressOf(handlers), 1, null);
+		callDiscord("initialize", [clientID, cpp.RawPointer.addressOf(handlers), 1, null]);
 		isRunning = true;
 		trace("Discord Client started.");
 
 		while (isRunning)
 		{
-			Discord.runCallbacks();
+			callDiscord("runCallbacks", []);
 			sleep(2);
 		}
 
-		Discord.shutdown();
+		callDiscord("shutdown", []);
 	}
 
 	public static function shutdown():Void
 	{
 		isRunning = false;
-		Discord.shutdown();
+		callDiscord("shutdown", []);
 	}
 
 	static function onReady(request:cpp.RawConstPointer<DiscordUser>):Void
@@ -47,7 +47,7 @@ class DiscordClient
 		activity.details        = "In the Menus";
 		activity.largeImageKey  = "icon";
 		activity.largeImageText = "SinkopesoEngine";
-		Discord.updateActivity(activity, null);
+		callDiscord("updateActivity", [activity, null]);
 	}
 
 	static function onError(_code:Int, _message:cpp.ConstCharStar):Void
@@ -109,9 +109,25 @@ class DiscordClient
 			activity.startTimestamp = Std.int(startTimestamp / 1000);
 		if (endTimestamp != null && endTimestamp > 0)
 			activity.endTimestamp = Std.int(endTimestamp / 1000);
-		Discord.updateActivity(activity, null);
+		callDiscord("updateActivity", [activity, null]);
 
 		// trace('Discord RPC Updated. Arguments: $details, $state, $smallImageKey, $hasStartTimestamp, $endTimestamp');
+	}
+
+	static function callDiscord(method:String, args:Array<Dynamic>):Void
+	{
+		var fn = Reflect.field(Discord, method);
+		if (fn != null)
+		{
+			Reflect.callMethod(Discord, fn, args);
+			return;
+		}
+
+		// Some hxdiscord_rpc builds expose PascalCase methods.
+		var alt = method.substr(0, 1).toUpperCase() + method.substr(1);
+		fn = Reflect.field(Discord, alt);
+		if (fn != null)
+			Reflect.callMethod(Discord, fn, args);
 	}
 }
 #end
