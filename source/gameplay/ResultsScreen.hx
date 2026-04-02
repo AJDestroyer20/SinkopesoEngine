@@ -10,7 +10,7 @@ import sys.io.File;
 #end
 import openfl.geom.Matrix;
 import openfl.display.BitmapData;
-import flixel.system.FlxSound;
+import flixel.sound.FlxSound;
 import flixel.util.FlxAxes;
 import flixel.FlxSubState;
 import ui.menu.Options.Option;
@@ -28,7 +28,6 @@ import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import lime.app.Application;
 import flixel.math.FlxMath;
-import flixel.text.FlxText;
 import flixel.input.FlxKeyManager;
 
 using StringTools;

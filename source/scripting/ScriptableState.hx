@@ -3,6 +3,7 @@ package scripting;
 import flixel.FlxG;
 import context.GameContext;
 import context.EventBus;
+import context.EventBus.BusEvents;
 import scripting.ScriptContext;
 import gameplay.MusicBeatState;
 

@@ -123,7 +123,7 @@ class HaxeScriptBackend implements IScriptBackend
 		iris.set("GameContext",  context.GameContext);
 		iris.set("AudioManager", context.AudioManager);
 		iris.set("EventBus",     context.EventBus);
-		iris.set("BusEvents",    context.BusEvents);
+		iris.set("BusEvents",    context.EventBus.BusEvents);
 
 		// Fix C: getters dinámicos — siempre retornan la instancia actual
 		iris.set("getState", function():Dynamic return flixel.FlxG.state);
