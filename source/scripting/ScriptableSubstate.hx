@@ -1,7 +1,7 @@
 package scripting;
 
 import context.GameContext;
-import context.BusEvents;
+import context.EventBus.BusEvents;
 import scripting.ScriptContext;
 import gameplay.MusicBeatSubstate;
 

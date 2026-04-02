@@ -28,7 +28,6 @@ import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import lime.app.Application;
 import flixel.math.FlxMath;
-import flixel.text.FlxText;
 import flixel.input.FlxKeyManager;
 
 using StringTools;

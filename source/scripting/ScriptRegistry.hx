@@ -123,7 +123,7 @@ class ScriptRegistry
         result.push({ name: "GameContext",     ref: context.GameContext });
         result.push({ name: "AudioManager",    ref: context.AudioManager });
         result.push({ name: "EventBus",        ref: context.EventBus });
-        result.push({ name: "BusEvents",       ref: context.BusEvents });
+        result.push({ name: "BusEvents",       ref: context.EventBus.BusEvents });
 
         // Scripting
         result.push({ name: "ScriptRegistry",  ref: scripting.ScriptRegistry });

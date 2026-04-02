@@ -87,7 +87,9 @@ class ShaderManager
 	{
 		var shader = getShader(name);
 		if (shader == null) return;
-		applyParams(shader, {[paramName]: value});
+		var obj = {};
+		Reflect.setField(obj, paramName, value);
+		applyParams(shader, obj);
 	}
 
 	// ─── LOAD FROM FILE ──────────────────────────────────────────────────
