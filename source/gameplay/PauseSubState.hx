@@ -1,4 +1,5 @@
-package gameplay;
+import flixel.sound.FlxSound;
+
 
 import flixel.input.gamepad.FlxGamepad;
 import openfl.Lib;

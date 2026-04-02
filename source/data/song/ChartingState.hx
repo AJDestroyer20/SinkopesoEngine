@@ -2,7 +2,7 @@ package data.song;
 
 import data.song.Song.SongMeta;
 import openfl.system.System;
-import lime.app.Application;
+import lime.app.Application;import flixel.sound.FlxSound;
 #if FEATURE_FILESYSTEM
 import sys.io.File;
 import sys.FileSystem;

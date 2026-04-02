@@ -1,4 +1,5 @@
-package ui.menu;
+import flixel.sound.FlxSound;
+
 
 #if FEATURE_STEPMANIA
 import smTools.SMFile;
