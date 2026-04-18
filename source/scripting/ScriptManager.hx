@@ -6,6 +6,7 @@ import scripting.backends.XMLScriptBackend;
 import scripting.backends.JSONScriptBackend;
 import scripting.backends.TXTScriptBackend;
 import scripting.IScriptBackend;
+import scripting.ScriptRegistry;
 
 /**
  * ScriptManager — Central hub for the multi-language scripting system.
@@ -67,6 +68,12 @@ class ScriptManager
 
 		if (backend != null)
 		{
+			for (entry in ScriptRegistry.getAllEngineClasses())
+				backend.setVar(entry.name, entry.ref);
+
+			for (key in globalVars.keys())
+				backend.setVar(key, globalVars.get(key));
+
 			backend.load();
 			scripts.push(backend);
 			trace('[ScriptManager] Loaded: $path');

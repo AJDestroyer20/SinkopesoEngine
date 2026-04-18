@@ -43,7 +43,7 @@ class Caching extends MusicBeatState
 
 	public static var bitmapData:Map<String, FlxGraphic>;
 
-	var images = [];
+	var images:Array<{cacheKey:String, assetPath:String, fileName:String}> = [];
 	var music = [];
 	var charts = [];
 
@@ -94,18 +94,28 @@ class Caching extends MusicBeatState
 			Debug.logTrace("caching images...");
 
 			// TODO: Refactor this to use OpenFlAssets.
-			for (i in FileSystem.readDirectory(FileSystem.absolutePath("assets/shared/images/characters")))
+			for (fileName in FileSystem.readDirectory(FileSystem.absolutePath("assets/shared/images/characters")))
 			{
-				if (!i.endsWith(".png"))
+				if (!fileName.endsWith(".png"))
 					continue;
-				images.push(i);
+				var imageName = fileName.substr(0, fileName.length - 4);
+				images.push({
+					cacheKey: 'characters/$imageName',
+					assetPath: Paths.image('characters/$imageName', 'shared'),
+					fileName: fileName
+				});
 			}
 
-			for (i in FileSystem.readDirectory(FileSystem.absolutePath("assets/shared/images/noteskins")))
+			for (fileName in FileSystem.readDirectory(FileSystem.absolutePath("assets/shared/images/noteskins")))
 			{
-				if (!i.endsWith(".png"))
+				if (!fileName.endsWith(".png"))
 					continue;
-				images.push(i);
+				var imageName = fileName.substr(0, fileName.length - 4);
+				images.push({
+					cacheKey: 'noteskins/$imageName',
+					assetPath: Paths.image('noteskins/$imageName', 'shared'),
+					fileName: fileName
+				});
 			}
 		}
 
@@ -166,18 +176,14 @@ class Caching extends MusicBeatState
 		#if FEATURE_FILESYSTEM
 		trace("LOADING: " + toBeDone + " OBJECTS.");
 
-		for (i in images)
+		for (image in images)
 		{
-			var replaced = i.replace(".png", "");
-
-			// var data:BitmapData = BitmapData.fromFile("assets/shared/images/characters/" + i);
-			var imagePath = Paths.image('characters/$i', 'shared');
-			Debug.logTrace('Caching character graphic $i ($imagePath)...');
-			var data = OpenFlAssets.getBitmapData(imagePath);
+			Debug.logTrace('Caching graphic ${image.fileName} (${image.assetPath})...');
+			var data = OpenFlAssets.getBitmapData(image.assetPath);
 			var graph = FlxGraphic.fromBitmapData(data);
 			graph.persist = true;
 			graph.destroyOnNoUse = false;
-			bitmapData.set(replaced, graph);
+			bitmapData.set(image.cacheKey, graph);
 			done++;
 		}
 

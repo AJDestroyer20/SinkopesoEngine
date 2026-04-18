@@ -2,6 +2,7 @@ package scripting.backends;
 
 import scripting.IScriptBackend;
 import scripting.ScriptManager;
+import scripting.ScriptRegistry;
 import scripting.backends.LuaHelper;
 
 #if LUA_ALLOWED
@@ -177,6 +178,14 @@ class LuaScriptBackend implements IScriptBackend
 			ScriptManager.call(func, args ?? []);
 			return null;
 		});
+		LuaHelper.add_callback(lua, "callHaxeFunction", function(pathOrName:String, ?args:Array<Dynamic>):Dynamic {
+			return callHaxeFunction(pathOrName, args ?? []);
+		});
+		LuaHelper.add_callback(lua, "setHaxeFunction", function(name:String, pathOrName:String):Void {
+			var fn = resolveCallable(pathOrName);
+			if (fn != null)
+				ScriptManager.globalVars.set(name, fn);
+		});
 
 		// ── Carga de canciones ────────────────────────────────────────────────
 		LuaHelper.add_callback(lua, "loadSong", function(?name:String = null, ?diff:Int = -1) {
@@ -286,6 +295,34 @@ class LuaScriptBackend implements IScriptBackend
 		if (sys.FileSystem.exists(inAssets)) return inAssets;
 		#end
 		return file;
+	}
+
+	function callHaxeFunction(pathOrName:String, args:Array<Dynamic>):Dynamic
+	{
+		var fn = resolveCallable(pathOrName);
+		if (fn == null) return null;
+		return Reflect.callMethod(null, fn, args);
+	}
+
+	function resolveCallable(pathOrName:String):Dynamic
+	{
+		if (ScriptManager.globalVars.exists(pathOrName))
+		{
+			var ref = ScriptManager.globalVars.get(pathOrName);
+			if (Reflect.isFunction(ref))
+				return ref;
+		}
+
+		var parts = pathOrName.split(".");
+		if (parts.length < 2) return null;
+
+		var methodName = parts.pop();
+		var classPath = parts.join(".");
+		var cls = ScriptRegistry.resolve(classPath);
+		if (cls == null) return null;
+
+		var method = Reflect.field(cls, methodName);
+		return Reflect.isFunction(method) ? method : null;
 	}
 
 	static function getBuildTarget():String

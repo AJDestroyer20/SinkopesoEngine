@@ -12,40 +12,41 @@ class CoolUtil
 
 	public static function difficultyFromInt(difficulty:Int):String
 	{
+		if (difficulty < 0 || difficulty >= difficultyArray.length)
+		{
+			return difficultyArray[1];
+		}
+
 		return difficultyArray[difficulty];
 	}
 
 	public static function coolTextFile(path:String):Array<String>
 	{
-		var daList:Array<String> = OpenFlAssets.getText(path).trim().split('\n');
-
-		for (i in 0...daList.length)
-		{
-			daList[i] = daList[i].trim();
-		}
-
-		return daList;
+		return splitAndTrimLines(OpenFlAssets.getText(path));
 	}
 
 	public static function coolStringFile(path:String):Array<String>
 	{
-		var daList:Array<String> = path.trim().split('\n');
-
-		for (i in 0...daList.length)
-		{
-			daList[i] = daList[i].trim();
-		}
-
-		return daList;
+		return splitAndTrimLines(path);
 	}
 
 	public static function numberArray(max:Int, ?min = 0):Array<Int>
 	{
-		var dumbArray:Array<Int> = [];
+		var result:Array<Int> = [];
 		for (i in min...max)
 		{
-			dumbArray.push(i);
+			result.push(i);
 		}
-		return dumbArray;
+		return result;
+	}
+
+	static inline function splitAndTrimLines(content:String):Array<String>
+	{
+		var lines:Array<String> = content.trim().split('\n');
+		for (i in 0...lines.length)
+		{
+			lines[i] = lines[i].trim();
+		}
+		return lines;
 	}
 }

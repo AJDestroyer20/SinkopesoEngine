@@ -1,22 +1,39 @@
-// Global imports — automatically available in all files
-// Add frequently-used classes here to avoid repeating imports everywhere.
-
-import core.Paths;
+import audio.ReactiveAudio;
+import context.AudioManager;
+import context.EventBus;
+import context.GameContext;
 import core.CoolUtil;
 import core.Debug;
 import core.HelperFunctions;
+import core.Paths;
 import data.song.Song;
+import flixel.FlxBasic;
+import flixel.FlxCamera;
 import flixel.FlxG;
+import flixel.FlxObject;
 import flixel.FlxSprite;
-import flixel.util.FlxColor;
+import flixel.group.FlxGroup;
+import flixel.group.FlxSpriteGroup;
+import flixel.math.FlxMath;
+import flixel.sound.FlxSound;
+import flixel.text.FlxText;
 import flixel.tweens.FlxTween;
+import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
+import gameplay.Conductor;
 import gameplay.MusicBeatState;
 import gameplay.PlayState;
 import gameplay.TimingStruct;
+import gameplay.ai.AdaptiveAI;
+import gameplay.characters.Boyfriend;
 import gameplay.characters.Character;
+import gameplay.events.EventSystem;
 import gameplay.notes.Note;
-import gfx.ImageOutline;
+import gameplay.notes.StaticArrow;
+import scripting.ScriptManager;
+import scripting.ScriptRegistry;
+import scripting.ScriptableState;
+import scripting.ScriptableSubstate;
 import ui.hud.HealthIcon;
 import ui.menu.FreeplayState;
 import ui.menu.MainMenuState;

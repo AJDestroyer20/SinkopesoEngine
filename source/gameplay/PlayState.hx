@@ -306,7 +306,6 @@ class PlayState extends scripting.ScriptableState
 		#end
 
 		super.create();
-		scripts.call(ScriptCallbacks.ON_SONG_START, []);
 	}
 
 	// ── Create helpers ────────────────────────────────────────────────────────
@@ -320,13 +319,15 @@ class PlayState extends scripting.ScriptableState
 
 	private inline function _applyChangeables():Void
 	{
+		PlayStateChangeables.reset();
 		var d = FlxG.save.data;
-		PlayStateChangeables.useDownscroll = d.downscroll;
-		PlayStateChangeables.safeFrames    = d.frames;
-		PlayStateChangeables.scrollSpeed   = d.scrollSpeed * songMultiplier;
-		PlayStateChangeables.botPlay       = d.botplay;
-		PlayStateChangeables.Optimize      = d.optimize;
-		PlayStateChangeables.zoom          = d.zoom;
+		if (d == null) return;
+		PlayStateChangeables.useDownscroll = d.downscroll ?? false;
+		PlayStateChangeables.safeFrames    = d.frames ?? 10;
+		PlayStateChangeables.scrollSpeed   = (d.scrollSpeed ?? 1.0) * songMultiplier;
+		PlayStateChangeables.botPlay       = d.botplay ?? false;
+		PlayStateChangeables.Optimize      = d.optimize ?? false;
+		PlayStateChangeables.zoom          = d.zoom ?? 1.0;
 		PlayStateChangeables.mirrorMode    = d.mirrorMode   ?? false;
 		PlayStateChangeables.opponentMode  = d.opponentMode ?? false;
 		PlayStateChangeables.darkMode      = d.darkMode     ?? false;
@@ -661,7 +662,6 @@ class PlayState extends scripting.ScriptableState
 		ScriptManager.setVar("bpm",         Conductor.bpm);
 		ScriptManager.setVar("isStoryMode", isStoryMode);
 		ScriptManager.setVar("botPlay",     PlayStateChangeables.botPlay);
-		ScriptManager.call(ScriptCallbacks.ON_SONG_START, []);
 	}
 
 	#if FEATURE_DISCORD
@@ -1027,6 +1027,8 @@ class PlayState extends scripting.ScriptableState
 
 		if (useVideo) GlobalVideo.get().resume();
 
+		ScriptManager.call(ScriptCallbacks.ON_SONG_START, []);
+		scripts.call(ScriptCallbacks.ON_SONG_START, []);
 		#if FEATURE_LUAMODCHART if (executeModchart) luaModchart.executeState("songStart", [null]); #end
 
 		#if FEATURE_DISCORD
@@ -1789,7 +1791,7 @@ class PlayState extends scripting.ScriptableState
 	{
 		if (currentSection?.sectionEvents == null) return;
 		for (ev in currentSection.sectionEvents)
-			EventSystem.trigger(ev.name, ev.value, ev.value2);
+			EventSystem.fire(ev.name, ev.value, ev.value2);
 	}
 
 	public function addTextToDebug(text:String, color:FlxColor):Void

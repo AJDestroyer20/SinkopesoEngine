@@ -163,6 +163,7 @@ class EventBus
 	{
 		_listeners     = new Map();
 		_handleToEvent = new Map();
+		_nextHandle = 0;
 	}
 }
 

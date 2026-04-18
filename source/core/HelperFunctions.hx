@@ -1,20 +1,27 @@
 package core;
 
-import flixel.FlxG;
 import flixel.math.FlxMath;
 
 class HelperFunctions
 {
 	public static function truncateFloat(number:Float, precision:Int):Float
 	{
-		var num = number;
-		num = num * Math.pow(10, precision);
-		num = Math.round(num) / Math.pow(10, precision);
-		return num;
+		var multiplier = Math.pow(10, precision);
+		return Math.round(number * multiplier) / multiplier;
 	}
 
-	public static function GCD(a, b)
+	public static function GCD(a:Int, b:Int):Int
 	{
-		return b == 0 ? FlxMath.absInt(a) : GCD(b, a % b);
+		var valueA = FlxMath.absInt(a);
+		var valueB = FlxMath.absInt(b);
+
+		while (valueB != 0)
+		{
+			var remainder = valueA % valueB;
+			valueA = valueB;
+			valueB = remainder;
+		}
+
+		return valueA;
 	}
 }

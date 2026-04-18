@@ -79,6 +79,11 @@ class EventSystem
 	 */
 	public static function fire(name:String, value1:String = "", value2:String = ""):Void
 	{
+		if (name == null || name.length == 0) return;
+
+		value1 = value1 == null ? "" : value1;
+		value2 = value2 == null ? "" : value2;
+
 		var now:Float = PlayState.instance != null ? PlayState.instance.songPosition : 0;
 
 		// Log to history
@@ -95,7 +100,8 @@ class EventSystem
 		// Now fire registered handlers
 		if (!handlers.exists(name)) return;
 
-		for (handler in handlers.get(name))
+		var activeHandlers = handlers.get(name).copy();
+		for (handler in activeHandlers)
 		{
 			// Cooldown check
 			if (handler.cooldownMs > 0)
@@ -159,8 +165,8 @@ class EventSystem
 		// ── Add Camera Zoom ───────────────────────────────────────────────
 		register("Add Camera Zoom", function(v1, v2) {
 			if (PlayState.instance == null) return true;
-			var camZoom = Std.parseFloat(v1) ?? 0.015;
-			var hudZoom = Std.parseFloat(v2) ?? 0.03;
+			var camZoom = parseFloatOr(v1, 0.015);
+			var hudZoom = parseFloatOr(v2, 0.03);
 			PlayState.instance.defaultCamZoom       += camZoom;
 			PlayState.instance.camHUD?.zoom         += hudZoom;
 			return true;
@@ -191,15 +197,15 @@ class EventSystem
 		// ── Camera Flash ──────────────────────────────────────────────────
 		register("Camera Flash", function(v1, v2) {
 			var color = Std.parseInt(v1) ?? 0xFFFFFFFF;
-			var dur   = Std.parseFloat(v2) ?? 0.5;
+			var dur   = parseFloatOr(v2, 0.5);
 			flixel.FlxG.camera.flash(color, dur);
 			return true;
 		}, 10);
 
 		// ── Camera Shake ──────────────────────────────────────────────────
 		register("Camera Shake", function(v1, v2) {
-			var intensity = Std.parseFloat(v1) ?? 0.01;
-			var dur       = Std.parseFloat(v2) ?? 0.5;
+			var intensity = parseFloatOr(v1, 0.01);
+			var dur       = parseFloatOr(v2, 0.5);
 			flixel.FlxG.camera.shake(intensity, dur);
 			return true;
 		}, 10);
@@ -207,14 +213,14 @@ class EventSystem
 		// ── Screen Fade ───────────────────────────────────────────────────
 		register("Screen Fade", function(v1, v2) {
 			var color = Std.parseInt(v1) ?? 0xFF000000;
-			var dur   = Std.parseFloat(v2) ?? 1.0;
+			var dur   = parseFloatOr(v2, 1.0);
 			flixel.FlxG.camera.fade(color, dur);
 			return true;
 		}, 10);
 
 		// ── Set Scroll Speed ──────────────────────────────────────────────
 		register("Set Scroll Speed", function(v1, v2) {
-			var speed = Std.parseFloat(v1) ?? 1.0;
+			var speed = parseFloatOr(v1, 1.0);
 			if (PlayState.instance != null)
 				PlayState.instance.songSpeed = speed;
 			return true;
@@ -228,6 +234,12 @@ class EventSystem
 		handlers.clear();
 		history  = [];
 		cooldowns.clear();
+	}
+
+	static inline function parseFloatOr(value:String, fallback:Float):Float
+	{
+		var parsed = Std.parseFloat(value);
+		return Math.isNaN(parsed) ? fallback : parsed;
 	}
 }
 

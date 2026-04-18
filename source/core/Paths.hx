@@ -92,9 +92,16 @@ class Paths
 		var rawJson = OpenFlAssets.getText(Paths.json(key, library)).trim();
 
 		// Perform cleanup on files that have bad data at the end.
-		while (!rawJson.endsWith("}"))
+		while (rawJson.length > 0 && !rawJson.endsWith("}"))
 		{
 			rawJson = rawJson.substr(0, rawJson.length - 1);
+		}
+
+		if (rawJson.length == 0)
+		{
+			Debug.logError('AN ERROR OCCURRED parsing a JSON file.');
+			Debug.logError('JSON file was empty after cleanup: ${Paths.json(key, library)}');
+			return null;
 		}
 
 		try
@@ -223,7 +230,12 @@ class Paths
 		for (ext in AUDIO_EXTS)
 		{
 			var fullPath = hasLibPrefix ? '$basePath.$ext' : getPath('$basePath.$ext', type, library);
-			if (OpenFlAssets.exists(fullPath, SOUND) || OpenFlAssets.exists(fullPath, MUSIC))
+			if (OpenFlAssets.exists(fullPath, type))
+				return fullPath;
+			// Some platforms/providers classify audio assets as SOUND or MUSIC unpredictably.
+			if (type == SOUND && OpenFlAssets.exists(fullPath, MUSIC))
+				return fullPath;
+			if (type == MUSIC && OpenFlAssets.exists(fullPath, SOUND))
 				return fullPath;
 		}
 

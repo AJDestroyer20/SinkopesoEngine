@@ -2,6 +2,7 @@ package scripting.backends;
 
 import scripting.IScriptBackend;
 import scripting.ScriptManager;
+import scripting.ScriptRegistry;
 
 #if HSCRIPT_ALLOWED
 import crowplexus.iris.Iris;
@@ -97,33 +98,15 @@ class HaxeScriptBackend implements IScriptBackend
 	{
 		if (iris == null) return;
 
-		// ── Flixel ────────────────────────────────────────────────────────────
-		iris.set("FlxG",           flixel.FlxG);
-		iris.set("FlxSprite",      flixel.FlxSprite);
-		iris.set("FlxText",        flixel.text.FlxText);
-		iris.set("FlxCamera",      flixel.FlxCamera);
-		iris.set("FlxTimer",       flixel.util.FlxTimer);
-		iris.set("FlxTween",       flixel.tweens.FlxTween);
-		iris.set("FlxEase",        flixel.tweens.FlxEase);
-		iris.set("FlxColor",       flixel.util.FlxColor);
-		iris.set("FlxMath",        flixel.math.FlxMath);
-		iris.set("FlxSound",       flixel.sound.FlxSound);
-		iris.set("FlxBasic",       flixel.FlxBasic);
-		iris.set("FlxGroup",       flixel.group.FlxGroup);
-		iris.set("FlxSpriteGroup", flixel.group.FlxSpriteGroup);
+		for (entry in ScriptRegistry.getAllEngineClasses())
+		{
+			iris.set(entry.name, entry.ref);
+		}
 
-		// ── Engine ────────────────────────────────────────────────────────────
-		iris.set("Paths",     core.Paths);
-		iris.set("CoolUtil",  core.CoolUtil);
-		iris.set("Conductor", gameplay.Conductor);
-		iris.set("PlayState", gameplay.PlayState);
-		iris.set("Note",      gameplay.notes.Note);
-
-		// ── Context ───────────────────────────────────────────────────────────
-		iris.set("GameContext",  context.GameContext);
-		iris.set("AudioManager", context.AudioManager);
-		iris.set("EventBus",     context.EventBus);
-		iris.set("BusEvents",    context.EventBus.BusEvents);
+		for (key in ScriptManager.globalVars.keys())
+		{
+			iris.set(key, ScriptManager.globalVars.get(key));
+		}
 
 		// Fix C: getters dinámicos — siempre retornan la instancia actual
 		iris.set("getState", function():Dynamic return flixel.FlxG.state);
@@ -132,14 +115,16 @@ class HaxeScriptBackend implements IScriptBackend
 		iris.set("state", flixel.FlxG.state);
 		iris.set("game",  gameplay.PlayState.instance);
 
-		// ── Stdlib ────────────────────────────────────────────────────────────
-		iris.set("Math",        Math);
-		iris.set("Std",         Std);
-		iris.set("StringTools", StringTools);
-		iris.set("Type",        Type);
-		iris.set("Reflect",     Reflect);
-		iris.set("Json",        haxe.Json);
-		iris.set("Assets",      openfl.Assets);
+		iris.set("importClass", function(pathOrName:String, ?alias:String):Dynamic {
+			var cls = ScriptRegistry.resolve(pathOrName);
+			if (cls == null)
+			{
+				trace('[HScript] importClass: no se puede resolver "$pathOrName"');
+				return null;
+			}
+			iris.set(alias != null && alias.length > 0 ? alias : pathOrName.split(".").pop(), cls);
+			return cls;
+		});
 
 		// ── Registro de clases ────────────────────────────────────────────────
 		iris.set("registerClass", function(name:String, cls:Dynamic) {
@@ -193,6 +178,10 @@ class HaxeScriptBackend implements IScriptBackend
 		// ── Variables compartidas ─────────────────────────────────────────────
 		iris.set("setVar", function(name:String, v:Dynamic) ScriptManager.globalVars.set(name, v));
 		iris.set("getVar", function(name:String):Dynamic   return ScriptManager.globalVars.get(name));
+		iris.set("setHaxeFunction", function(name:String, fn:Dynamic) {
+			if (Reflect.isFunction(fn))
+				ScriptManager.globalVars.set(name, fn);
+		});
 
 		// ── Debug ────────────────────────────────────────────────────────────
 		iris.set("trace", function(msg:Dynamic) {
