@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+	<meta title="Friday Night Funkin': SinkopesoEngine" package="com.ajdestroyer20.sinkopeso.fnf" version="1.0.0" company="sinkopeso" />
+	
+	<app main="Main" path="export" file="SinkopesoEngine" />
+	
+	<source path="source" />
+	
+	<haxelib name="flixel" />
+	<haxelib name="flixel-addons" />
+	<haxelib name="flixel-ui" />
+	
+	<haxelib name="grig.audio" />
+	<haxelib name="tink_core" />
+	<haxelib name="tjson" />
+	
+	<haxedef name="FEATURE_HXVLC" if="desktop" />
+	<haxelib name="hxvlc" if="FEATURE_HXVLC" />
+	
+	<haxedef name="LUA_ALLOWED" if="desktop" />
+	<haxelib name="linc_luajit" if="LUA_ALLOWED" />
+	
+	<haxedef name="FEATURE_DISCORD" if="desktop" />
+	<haxelib name="discord_rpc" if="FEATURE_DISCORD" />
+	
+	<assets path="assets" />
+	
+	<haxedef name="FLX_NO_FOCUS_LOST_SCREEN" />
+	<haxedef name="FLX_NO_DEBUG" unless="debug" />
+	
+	<section if="cpp">
+		<haxedef name="HXCPP_CHECK_POINTER" if="debug" />
+		<haxedef name="HXCPP_STACK_LINE" if="debug" />
+	</section>
+	
+	<window width="1280" height="720" fps="120" background="#000000" hardware="true" vsync="false" />
+	<window if="desktop" orientation="landscape" fullscreen="false" resizable="true" />
+	<window if="mobile" orientation="landscape" fullscreen="true" width="0" height="0" />
+	
+	<window if="html5" resizable="true" />
+	<window if="html5" require-shaders="true" />
+	<window if="html5" allow-shaders="true" />
+</project>
