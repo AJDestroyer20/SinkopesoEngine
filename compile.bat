@@ -2,6 +2,7 @@
 title Compile
 color 02
 cls
+setlocal EnableExtensions EnableDelayedExpansion
 
 
 echo Select target
@@ -23,29 +24,37 @@ if errorlevel 1 goto windows
 
 :windows
 echo Compiling for Windows...
-lime test windows
+lime test windows || goto fail
 goto end
 
 :mac
 echo Compiling for MacOS...
-lime test mac
+lime test mac || goto fail
 goto end
 
 :linux
 echo Compiling for Linux...
-lime test linux
+lime test linux || goto fail
 goto end
 
 :android
 echo Compiling for Android...
-lime test android
+lime test android || goto fail
 goto end
 
 :ios
 echo Compiling for iOS...
-lime test ios
+lime test ios || goto fail
 goto end
 
 :end
 echo.
+echo Build completed successfully.
 pause
+exit /b 0
+
+:fail
+echo.
+echo Build failed. Check the output above for the first error and fix incrementally.
+pause
+exit /b 1

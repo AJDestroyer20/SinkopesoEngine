@@ -24,9 +24,10 @@ haxelib install extension-androidtools 2.2.1 --skip-dependencies
 haxelib install hxdiscord_rpc 1.3.0 --skip-dependencies
 haxelib install hxvlc 2.2.2 --skip-dependencies
 haxelib install rulescript 0.2.0
+haxelib git hscript-iris https://github.com/pisayesiwsi/hscript-iris
 
 echo.
-echo Libraries installed correctly
+echo Libraries installed correctly (including hscript-iris)
 echo.
 
 choice /c YN /m "Do you want to compile?"

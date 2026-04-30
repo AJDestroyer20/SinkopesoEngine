@@ -1,0 +1,15 @@
+// HScript-Iris style TitleState example
+var blink = 0.0;
+
+function onCreate() {
+	trace('Title script boot');
+	playSound('intro3');
+}
+
+function onUpdate(elapsed) {
+	blink += elapsed;
+	if (blink >= 1) {
+		blink = 0;
+		cameraFlash(0.08);
+	}
+}
