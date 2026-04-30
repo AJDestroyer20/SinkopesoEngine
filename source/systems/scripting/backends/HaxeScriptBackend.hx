@@ -67,4 +67,10 @@ class HaxeScriptBackend implements IScriptBackend
 		active = false;
 		runtime = null;
 	}
+	}
+
+	public function call(func:String, args:Array<Dynamic>):Dynamic return null;
+	public function set(name:String, value:Dynamic):Void {}
+	public function get(name:String):Dynamic return null;
+	public function stop():Void active = false;
 }
