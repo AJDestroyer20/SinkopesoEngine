@@ -9,6 +9,8 @@ import openfl.events.Event;
 import openfl.events.UncaughtErrorEvent;
 import haxe.CallStack;
 import states.TitleState;
+import core.context.GameContext;
+import core.state.StateResolver;
 import backend.Preferences;
 
 #if (windows && cpp)
@@ -85,6 +87,14 @@ class Main extends Sprite
 
 	private function setupGame():Void
 	{
+		var context = GameContext.init();
+		game.width = context.config.windowWidth;
+		game.height = context.config.windowHeight;
+		game.framerate = context.config.framerate;
+		game.skipSplash = context.config.skipSplash;
+		game.startFullscreen = context.config.startFullscreen;
+		game.initialState = StateResolver.resolve(context.config.initialState);
+
 		var stageWidth:Int = Lib.current.stage.stageWidth;
 		var stageHeight:Int = Lib.current.stage.stageHeight;
 

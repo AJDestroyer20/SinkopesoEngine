@@ -6,6 +6,11 @@ import gameplay.characters.*;
 import gameplay.events.*;
 import gameplay.stage.*;
 import flixel.group.FlxGroup.FlxTypedGroup;
+import core.context.GameContext;
+import systems.camera.CameraController;
+import gameplay.ai.AIDriver;
+import systems.debug.EngineDiagnostics;
+import core.enums.AccuracyRank;
 
 class PlayState extends MusicBeatState
 {
@@ -27,6 +32,8 @@ class PlayState extends MusicBeatState
 	
 	public var camGame:FlxCamera;
 	public var camHUD:FlxCamera;
+	public var cameraController:CameraController;
+	public var aiDriver:AIDriver;
 	
 	public var health:Float = 1;
 	public var combo:Int = 0;
@@ -71,6 +78,8 @@ class PlayState extends MusicBeatState
 		FlxG.cameras.add(camHUD, false);
 		
 		FlxCamera.defaultCameras = [camGame];
+		cameraController = new CameraController(camGame);
+		aiDriver = new AIDriver();
 		
 		curStage = SONG.stage;
 		
@@ -152,6 +161,7 @@ class PlayState extends MusicBeatState
 		new FlxTimer().start(Conductor.crochet / 1000, function(tmr:FlxTimer)
 		{
 			characterManager.beatHit();
+			cameraController.beatZoom();
 			
 			countdown++;
 			
@@ -186,10 +196,12 @@ class PlayState extends MusicBeatState
 		vocals.play();
 		
 		Conductor.songPosition = 0;
+		GameContext.init().events.publish("song.started", SONG.song);
 	}
 	
 	private function endSong():Void
 	{
+		GameContext.init().events.publish("song.ended", SONG.song);
 		FlxG.sound.music.volume = 0;
 		vocals.volume = 0;
 		
@@ -224,6 +236,11 @@ class PlayState extends MusicBeatState
 			return;
 		}
 		
+		if (FlxG.keys.justPressed.F3)
+		{
+			EngineDiagnostics.runAll();
+		}
+
 		if (FlxG.keys.justPressed.ESCAPE)
 		{
 			FlxG.switchState(new TitleState());
@@ -242,6 +259,8 @@ class PlayState extends MusicBeatState
 			}
 		}
 		
+		GameContext.init().audio.update();
+
 		if (generatedMusic)
 		{
 			noteManager.curStep = curStep;
@@ -424,8 +443,8 @@ class PlayState extends MusicBeatState
 	private function updateScore():Void
 	{
 		var accuracyStr:String = Std.string(FlxMath.roundDecimal(accuracy, 2)) + '%';
-		
-		scoreTxt.text = 'Score: $songScore | Misses: $songMisses | Accuracy: $accuracyStr';
+		var rank:String = AccuracyRank.fromAccuracy(accuracy);
+		scoreTxt.text = 'Score: $songScore | Misses: $songMisses | Accuracy: $accuracyStr | Rank: $rank';
 	}
 	
 	override function beatHit()
@@ -433,6 +452,7 @@ class PlayState extends MusicBeatState
 		super.beatHit();
 		
 		characterManager.beatHit();
+			cameraController.beatZoom();
 		
 		if (curBeat % 4 == 0)
 		{
