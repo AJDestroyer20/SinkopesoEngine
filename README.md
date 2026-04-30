@@ -1,6 +1,6 @@
 # Sinkopeso Engine
 
-Sinkopeso Engine is a rhythm-game framework built on HaxeFlixel, focused on modular architecture, scripting, modding, and long-term maintainability.
+Sinkopeso Engine is a Kade Engine fork that aims to look more modern and better, and is also geared towards softcoding.
 
 ## Current Highlights
 - Centralized `GameContext` service container.
