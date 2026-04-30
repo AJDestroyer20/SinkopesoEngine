@@ -48,6 +48,7 @@ class LuaScript
 		
 		Lua.pushcfunction(lua, luaSetProperty);
 		Lua.setglobal(lua, 'setProperty');
+		systems.scripting.api.PsychLuaAPI.register(lua);
 	}
 	
 	public function call(func:String, args:Array<Dynamic>):Dynamic
@@ -106,7 +107,7 @@ class LuaScript
 		return 0;
 	}
 	
-	private static function luaGetProperty(L:State):Int
+	public static function luaGetProperty(L:State):Int
 	{
 		var obj:String = Lua.tostring(L, 1);
 		var field:String = Lua.tostring(L, 2);
@@ -119,7 +120,7 @@ class LuaScript
 		return 1;
 	}
 	
-	private static function luaSetProperty(L:State):Int
+	public static function luaSetProperty(L:State):Int
 	{
 		var obj:String = Lua.tostring(L, 1);
 		var field:String = Lua.tostring(L, 2);
