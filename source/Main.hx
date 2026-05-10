@@ -169,7 +169,7 @@ class Main extends Sprite
 		errMsg += "\nUncaught Error: " + e.error;
 	
 		#if (windows && cpp)
-		cpp.WindowsAPI.showMessageBox('Engine Crash', errMsg, ERROR);
+		cpp.WindowsAPI.showMessageBox('Engine Crash', errMsg, cpp.MessageBoxIcon.ERROR);
 		#else
 		Application.current.window.alert(errMsg, 'Engine Crash');
 		#end

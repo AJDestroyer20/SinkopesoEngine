@@ -1,5 +1,6 @@
 package gameplay.notes;
 
+import states.PlayState;
 import core.enums.CharacterType;
 import systems.rendering.ColorSwap;
 

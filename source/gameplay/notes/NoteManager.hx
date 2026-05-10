@@ -1,5 +1,7 @@
 package gameplay.notes;
 
+import states.PlayState;
+import core.structures.Section;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import core.enums.CharacterType;
 

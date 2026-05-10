@@ -6,21 +6,29 @@
 	
 	<source path="source" />
 	
-	<haxelib name="flixel" />
-	<haxelib name="flixel-addons" />
+	<haxelib name="lime" version="8.1.2" />
+	<haxelib name="openfl" version="9.3.3" />
+	<haxelib name="flixel" version="5.6.1" />
+	<haxelib name="flixel-addons" version="3.2.2" />
+	<haxelib name="flixel-tools" version="1.5.1" />
+	<haxelib name="flxanimate" />
+	<haxelib name="funkin.vis" />
 	
 	<haxelib name="grig.audio" />
 	<haxelib name="tink_core" />
-	<haxelib name="tjson" />
+	<haxelib name="tjson" version="1.4.0" />
+
+	<haxedef name="hscript_iris" />
+	<haxelib name="hscript-iris" if="hscript_iris" />
 	
-	<haxedef name="FEATURE_HXVLC" if="desktop" />
-	<haxelib name="hxvlc" if="FEATURE_HXVLC" />
+	<haxedef name="FEATURE_HXVLC" />
+	<haxelib name="hxvlc" version="2.0.1" if="FEATURE_HXVLC" />
 	
-	<haxedef name="LUA_ALLOWED" if="desktop" />
+	<haxedef name="LUA_ALLOWED" />
 	<haxelib name="linc_luajit" if="LUA_ALLOWED" />
 	
-	<haxedef name="FEATURE_DISCORD" if="desktop" />
-	<haxelib name="discord_rpc" if="FEATURE_DISCORD" />
+	<haxedef name="FEATURE_DISCORD" />
+	<haxelib name="hxdiscord_rpc" version="1.2.4" if="FEATURE_DISCORD" />
 	
 	<haxedef name="FEATURE_AWAY3D" if="desktop" />
 	<haxelib name="away3d" if="FEATURE_AWAY3D" version="5.0.9" />
@@ -32,6 +40,8 @@
 	<haxedef name="FLX_NO_FOCUS_LOST_SCREEN" />
 	<haxedef name="FLX_NO_DEBUG" unless="debug" />
 	
+	<haxelib name="hxcpp-debug-server" version="1.2.4" if="cpp" />
+
 	<section if="cpp">
 		<haxedef name="HXCPP_CHECK_POINTER" if="debug" />
 		<haxedef name="HXCPP_STACK_LINE" if="debug" />

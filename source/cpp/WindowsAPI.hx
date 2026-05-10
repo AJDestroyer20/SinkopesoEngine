@@ -27,7 +27,7 @@ class WindowsAPI
 	}
 }
 
-@:enum abstract MessageBoxIcon(Int) from Int to Int
+enum abstract MessageBoxIcon(Int) from Int to Int
 {
 	var INFO = 0x00000040;
 	var WARNING = 0x00000030;

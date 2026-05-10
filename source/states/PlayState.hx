@@ -1,5 +1,6 @@
 package states;
 
+import core.structures.SongLoader;
 import backend.MusicBeatState;
 import gameplay.notes.*;
 import gameplay.characters.*;
