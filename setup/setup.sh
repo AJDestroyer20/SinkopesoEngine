@@ -13,6 +13,8 @@ haxelib install flixel-addons
 haxelib install grig.audio
 haxelib install tink_core
 haxelib install tjson
+haxelib install hscript
+haxelib install hscript-iris
 
 # Optional desktop libraries (install anyway)
 haxelib install hxvlc

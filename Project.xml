@@ -12,6 +12,9 @@
 	<haxelib name="grig.audio" />
 	<haxelib name="tink_core" />
 	<haxelib name="tjson" />
+
+	<haxedef name="hscript_iris" />
+	<haxelib name="hscript-iris" if="hscript_iris" />
 	
 	<haxedef name="FEATURE_HXVLC" if="desktop" />
 	<haxelib name="hxvlc" if="FEATURE_HXVLC" />
