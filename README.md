@@ -6,4 +6,4 @@ Subire todo cuando este mejor acomodado lol / I'll upload everything when it's m
 
 Thanks 4 ✨ le paciencirijilla ✨
 
-<img src="cuca.png">
+<img src="art/cuca.png">
