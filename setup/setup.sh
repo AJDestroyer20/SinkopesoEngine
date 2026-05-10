@@ -25,6 +25,15 @@ haxelib install tink_core
 haxelib git flxanimate https://github.com/Dot-Stuff/flxanimate 768740a56b26aa0c072720e0d1236b94afe68e3e
 haxelib git linc_luajit https://github.com/superpowers04/linc_luajit.git
 haxelib git funkin.vis https://github.com/FunkinCrew/funkVis 22b1ce089dd924f15cdc4632397ef3504d464e90
+haxelib install tjson
+haxelib install hscript
+haxelib install hscript-iris
+
+# Optional desktop libraries (install anyway)
+haxelib install hxvlc
+haxelib install linc_luajit
+haxelib install discord_rpc
+haxelib install away3d 5.0.9
 
 echo "==============================================="
 echo "All installations attempted."

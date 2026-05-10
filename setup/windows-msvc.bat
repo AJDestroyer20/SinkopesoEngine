@@ -7,3 +7,5 @@ vs_Community.exe --add Microsoft.VisualStudio.Component.VC.Tools.x86.x64 --add M
 del vs_Community.exe
 
 call setup\setup.bat
+echo Finished.
+pause

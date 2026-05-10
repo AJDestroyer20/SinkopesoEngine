@@ -17,6 +17,7 @@
 	<haxelib name="grig.audio" />
 	<haxelib name="tink_core" />
 	<haxelib name="tjson" version="1.4.0" />
+	<haxelib name="tjson" />
 
 	<haxedef name="hscript_iris" />
 	<haxelib name="hscript-iris" if="hscript_iris" />
