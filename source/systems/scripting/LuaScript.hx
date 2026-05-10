@@ -6,13 +6,14 @@ import llua.State;
 import llua.Convert;
 #end
 
-class LuaScript
+class LuaScript implements IScriptRuntime
 {
 	#if LUA_ALLOWED
 	public var lua:State;
 	public var scriptName:String = '';
 	
-	public var active:Bool = true;
+	public var active(default, null):Bool = true;
+	public var path(default, null):String;
 	
 	public function new(script:String)
 	{
@@ -20,6 +21,7 @@ class LuaScript
 		LuaL.openlibs(lua);
 		
 		scriptName = script;
+		path = script;
 		
 		var result:Int = LuaL.dofile(lua, script);
 		
@@ -50,13 +52,16 @@ class LuaScript
 		Lua.setglobal(lua, 'setProperty');
 	}
 	
-	public function call(func:String, args:Array<Dynamic>):Dynamic
+	public function call(func:String, ?args:Array<Dynamic>):Dynamic
 	{
 		if (lua == null || !active)
 			return null;
 		
 		Lua.getglobal(lua, func);
 		
+		if (args == null)
+			args = [];
+
 		for (arg in args)
 		{
 			Convert.toLua(lua, arg);
@@ -146,14 +151,16 @@ class LuaScript
 	#else
 	
 	public var scriptName:String = '';
-	public var active:Bool = false;
+	public var active(default, null):Bool = false;
+	public var path(default, null):String;
 	
 	public function new(script:String)
 	{
+		path = script;
 		trace('Lua scripting not enabled');
 	}
 	
-	public function call(func:String, args:Array<Dynamic>):Dynamic { return null; }
+	public function call(func:String, ?args:Array<Dynamic>):Dynamic { return null; }
 	public function set(variable:String, value:Dynamic):Void {}
 	public function get(variable:String):Dynamic { return null; }
 	public function stop():Void {}
