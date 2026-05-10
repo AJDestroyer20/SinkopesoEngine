@@ -1,0 +1,134 @@
+{
+	"animations": [
+		{
+			"prefix": "BF idle dance",
+			"indices": [],
+			"animation": "idle",
+			"framerate": 24,
+			"offset": [
+				-5,
+				0
+			],
+			"looped": false
+		},
+		{
+			"prefix": "BF NOTE LEFT0",
+			"indices": [],
+			"animation": "singLEFT",
+			"framerate": 24,
+			"offset": [
+				12,
+				7
+			],
+			"looped": false
+		},
+		{
+			"prefix": "BF NOTE DOWN0",
+			"indices": [],
+			"animation": "singDOWN",
+			"framerate": 24,
+			"offset": [
+				-10,
+				-10
+			],
+			"looped": false
+		},
+		{
+			"prefix": "BF NOTE UP0",
+			"indices": [],
+			"animation": "singUP",
+			"framerate": 24,
+			"offset": [
+				-29,
+				10
+			],
+			"looped": false
+		},
+		{
+			"prefix": "BF NOTE RIGHT0",
+			"indices": [],
+			"animation": "singRIGHT",
+			"framerate": 24,
+			"offset": [
+				-41,
+				23
+			],
+			"looped": false
+		},
+		{
+			"prefix": "BF NOTE LEFT MISS",
+			"indices": [],
+			"animation": "singLEFTmiss",
+			"framerate": 24,
+			"offset": [
+				12,
+				7
+			],
+			"looped": false
+		},
+		{
+			"prefix": "BF NOTE DOWN MISS",
+			"indices": [],
+			"animation": "singDOWNmiss",
+			"framerate": 24,
+			"offset": [
+				-10,
+				-10
+			],
+			"looped": false
+		},
+		{
+			"prefix": "BF NOTE UP MISS",
+			"indices": [],
+			"animation": "singUPmiss",
+			"framerate": 24,
+			"offset": [
+				-29,
+				10
+			],
+			"looped": false
+		},
+		{
+			"prefix": "BF NOTE RIGHT MISS",
+			"indices": [],
+			"animation": "singRIGHTmiss",
+			"framerate": 24,
+			"offset": [
+				-41,
+				33
+			],
+			"looped": false
+		},
+		{
+			"prefix": "BF catches GF",
+			"indices": [],
+			"animation": "bfCatch",
+			"framerate": 24,
+			"offset": [
+				0,
+				90
+			],
+			"looped": false
+		}
+	],
+	"image": "characters/bfAndGF",
+	"cameraPosition": [
+		0,
+		0
+	],
+	"position": [
+		0,
+		350
+	],
+	"format": "ale-format-v0.1",
+	"flipX": true,
+	"barColor": [
+		49,
+		176,
+		209
+	],
+	"deadVariant": "bf-holding-gf-dead",
+	"icon": "bf",
+	"antialiasing": true,
+	"scale": 1
+}

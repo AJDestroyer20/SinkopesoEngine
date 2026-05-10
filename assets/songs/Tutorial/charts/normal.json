@@ -1,0 +1,592 @@
+{
+	"speed": 1,
+	"stage": "stage",
+	"steps": 4,
+	"events": [],
+	"beats": 4,
+	"sections": [
+		{
+			"notes": [],
+			"bpm": 100,
+			"focus": 1,
+			"changeBPM": false
+		},
+		{
+			"notes": [],
+			"bpm": 100,
+			"focus": 1,
+			"changeBPM": false
+		},
+		{
+			"notes": [],
+			"bpm": 100,
+			"focus": 1,
+			"changeBPM": false
+		},
+		{
+			"notes": [],
+			"bpm": 100,
+			"focus": 1,
+			"changeBPM": false
+		},
+		{
+			"notes": [
+				[
+					9600,
+					0,
+					0,
+					null,
+					0
+				],
+				[
+					10800,
+					3,
+					0,
+					null,
+					0
+				]
+			],
+			"bpm": 100,
+			"focus": 0,
+			"changeBPM": false
+		},
+		{
+			"notes": [
+				[
+					12000,
+					0,
+					0,
+					null,
+					0
+				],
+				[
+					13200,
+					3,
+					0,
+					null,
+					0
+				]
+			],
+			"bpm": 100,
+			"focus": 0,
+			"changeBPM": false
+		},
+		{
+			"notes": [
+				[
+					14400,
+					0,
+					0,
+					null,
+					1
+				],
+				[
+					15600,
+					3,
+					0,
+					null,
+					1
+				]
+			],
+			"bpm": 100,
+			"focus": 1,
+			"changeBPM": false
+		},
+		{
+			"notes": [
+				[
+					16800,
+					0,
+					0,
+					null,
+					1
+				],
+				[
+					18000,
+					3,
+					0,
+					null,
+					1
+				]
+			],
+			"bpm": 100,
+			"focus": 1,
+			"changeBPM": false
+		},
+		{
+			"notes": [
+				[
+					19200,
+					2,
+					0,
+					null,
+					0
+				],
+				[
+					20400,
+					1,
+					0,
+					null,
+					0
+				]
+			],
+			"bpm": 100,
+			"focus": 0,
+			"changeBPM": false
+		},
+		{
+			"notes": [
+				[
+					21600,
+					2,
+					0,
+					null,
+					0
+				],
+				[
+					22800,
+					1,
+					0,
+					null,
+					0
+				]
+			],
+			"bpm": 100,
+			"focus": 0,
+			"changeBPM": false
+		},
+		{
+			"notes": [
+				[
+					24000,
+					2,
+					0,
+					null,
+					1
+				],
+				[
+					25200,
+					1,
+					0,
+					null,
+					1
+				]
+			],
+			"bpm": 100,
+			"focus": 1,
+			"changeBPM": false
+		},
+		{
+			"notes": [
+				[
+					26400,
+					2,
+					0,
+					null,
+					1
+				],
+				[
+					27600,
+					1,
+					0,
+					null,
+					1
+				]
+			],
+			"bpm": 100,
+			"focus": 1,
+			"changeBPM": false
+		},
+		{
+			"notes": [
+				[
+					28800,
+					0,
+					0,
+					null,
+					0
+				],
+				[
+					30000,
+					2,
+					0,
+					null,
+					0
+				]
+			],
+			"bpm": 100,
+			"focus": 0,
+			"changeBPM": false
+		},
+		{
+			"notes": [
+				[
+					31200,
+					1,
+					0,
+					null,
+					0
+				],
+				[
+					32400,
+					3,
+					0,
+					null,
+					0
+				]
+			],
+			"bpm": 100,
+			"focus": 0,
+			"changeBPM": false
+		},
+		{
+			"notes": [
+				[
+					33600,
+					0,
+					0,
+					null,
+					1
+				],
+				[
+					34800,
+					2,
+					0,
+					null,
+					1
+				]
+			],
+			"bpm": 100,
+			"focus": 1,
+			"changeBPM": false
+		},
+		{
+			"notes": [
+				[
+					36000,
+					1,
+					0,
+					null,
+					1
+				],
+				[
+					37200,
+					3,
+					0,
+					null,
+					1
+				]
+			],
+			"bpm": 100,
+			"focus": 1,
+			"changeBPM": false
+		},
+		{
+			"notes": [
+				[
+					38400,
+					1,
+					0,
+					null,
+					0
+				],
+				[
+					39000,
+					1,
+					0,
+					null,
+					0
+				],
+				[
+					39600,
+					2,
+					0,
+					null,
+					0
+				]
+			],
+			"bpm": 100,
+			"focus": 0,
+			"changeBPM": false
+		},
+		{
+			"notes": [
+				[
+					40800,
+					1,
+					0,
+					null,
+					0
+				],
+				[
+					41400,
+					1,
+					0,
+					null,
+					0
+				],
+				[
+					42000,
+					3,
+					0,
+					null,
+					0
+				]
+			],
+			"bpm": 100,
+			"focus": 0,
+			"changeBPM": false
+		},
+		{
+			"notes": [
+				[
+					43200,
+					1,
+					0,
+					null,
+					1
+				],
+				[
+					43800,
+					1,
+					0,
+					null,
+					1
+				],
+				[
+					44400,
+					2,
+					0,
+					null,
+					1
+				]
+			],
+			"bpm": 100,
+			"focus": 1,
+			"changeBPM": false
+		},
+		{
+			"notes": [
+				[
+					45600,
+					1,
+					0,
+					null,
+					1
+				],
+				[
+					46200,
+					1,
+					0,
+					null,
+					1
+				],
+				[
+					46800,
+					3,
+					0,
+					null,
+					1
+				]
+			],
+			"bpm": 100,
+			"focus": 1,
+			"changeBPM": false
+		},
+		{
+			"notes": [
+				[
+					48000,
+					1,
+					0,
+					null,
+					0
+				],
+				[
+					48300,
+					2,
+					0,
+					null,
+					0
+				],
+				[
+					48600,
+					3,
+					0,
+					null,
+					0
+				],
+				[
+					48900,
+					2,
+					0,
+					null,
+					0
+				],
+				[
+					49800,
+					3,
+					0,
+					null,
+					0
+				]
+			],
+			"bpm": 100,
+			"focus": 0,
+			"changeBPM": false
+		},
+		{
+			"notes": [
+				[
+					50400,
+					1,
+					0,
+					null,
+					1
+				],
+				[
+					50700,
+					2,
+					0,
+					null,
+					1
+				],
+				[
+					51000,
+					3,
+					0,
+					null,
+					1
+				],
+				[
+					51300,
+					2,
+					0,
+					null,
+					1
+				],
+				[
+					52200,
+					3,
+					0,
+					null,
+					1
+				]
+			],
+			"bpm": 100,
+			"focus": 1,
+			"changeBPM": false
+		},
+		{
+			"notes": [
+				[
+					52800,
+					3,
+					0,
+					null,
+					1
+				],
+				[
+					53400,
+					1,
+					0,
+					null,
+					1
+				],
+				[
+					54000,
+					0,
+					0,
+					null,
+					1
+				],
+				[
+					54600,
+					1,
+					0,
+					null,
+					1
+				]
+			],
+			"bpm": 100,
+			"focus": 1,
+			"changeBPM": false
+		},
+		{
+			"notes": [
+				[
+					55200,
+					2,
+					0,
+					null,
+					1
+				],
+				[
+					55800,
+					3,
+					0,
+					null,
+					1
+				],
+				[
+					56400,
+					0,
+					0,
+					null,
+					1
+				],
+				[
+					57000,
+					2,
+					0,
+					null,
+					1
+				]
+			],
+			"bpm": 100,
+			"focus": 1,
+			"changeBPM": false
+		},
+		{
+			"notes": [
+				[
+					57600,
+					1,
+					750,
+					null,
+					1
+				]
+			],
+			"bpm": 100,
+			"focus": 1,
+			"changeBPM": false
+		},
+		{
+			"notes": [],
+			"bpm": 100,
+			"focus": 1,
+			"changeBPM": false
+		},
+		{
+			"notes": [],
+			"bpm": 100,
+			"focus": 1,
+			"changeBPM": false
+		}
+	],
+	"format": "ale-format-v0.1",
+	"bpm": 100,
+	"needsVoices": false,
+	"metadata": {},
+	"song": "Tutorial",
+	"characters": [
+		[
+			"gf",
+			"extra"
+		],
+		[
+			"bf",
+			"player"
+		]
+	]
+}
